@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Material-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,6 +6,11 @@ import Button from '@material-ui/core/Button';
 
 // Styles
 const useStyles = makeStyles(theme => ({
+  container: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: 30
+  },
   button: {
     margin: theme.spacing(1)
   },
@@ -16,13 +21,14 @@ const useStyles = makeStyles(theme => ({
 
 // Functions
 export const addStrike = currentStrikes => {
+    console.log(currentStrikes)
   if (currentStrikes >= 2) {
     return 0;
   } else return currentStrikes + 1;
 };
 
 export const addBall = currentBalls => {
-  if (currentStrikes >= 3) {
+  if (currentBalls >= 3) {
     return 0;
   } else return currentBalls + 1;
 };
@@ -37,34 +43,38 @@ export const hit = currentValue => {
   return (currentValue = 0);
 };
 
-export default function Dashboard() {
-  const [strikes, setStrike] = useState(0);
-  const [balls, setBall] = useState(0);
-
+export default function Dashboard(props) {
+  const classes = useStyles();
+  
   return (
-    <div>
+    <div className={classes.container}>
       <Button
         variant="outlined"
         className={classes.button}
-        onClick={() => setStrikes(addStrike(strikes))}
+        onClick={() => props.setStrikes(addStrike(props.strikes))}
       >
         Strike
       </Button>
       <Button
         variant="outlined"
         className={classes.button}
-        onClick={() => setBalls(addBall(balls))}
+        onClick={() => props.setBalls(addBall(props.balls))}
       >
         Ball
       </Button>
       <Button
         variant="outlined"
         className={classes.button}
-        onClick={() => setStrikes(addFoul(strikes))}
+        onClick={() => props.setStrikes(addFoul(props.strikes))}
       >
         Foul
       </Button>
-      <Button variant="outlined" className={classes.button}>
+      <Button 
+        variant="outlined" 
+        className={classes.button}
+        onClick={hit(props.strikes, props.balls)}
+
+      >
         Hit
       </Button>
     </div>

@@ -1,13 +1,14 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import App from './App';
+import Dashboard, { addStrike, addBall, addFoul } from './components/Dashboard';
 
 it('renders without crashing', () => {
-  render(<App />);
+  render(<Dashboard />);
 });
 
 test('balls and strikes reset to 0 when a player reaches 3 strikes or 4 balls', () => {
-  expect('function().toBe()');
+  expect(addStrike(3).toBe(0));
+  expect(addBall(4).toBe(0));
 });
 
 test('balls and strikes reset to 0 when a hit is recorded', () => {
@@ -15,6 +16,6 @@ test('balls and strikes reset to 0 when a hit is recorded', () => {
 });
 
 test('a foul increases strikes up to 2. With 2 strikes a foul has no effect, count stays at 2', () => {
-  expect('function().toBe()');
-  expect('function().not.toBe()');
+  expect(addFoul(2).toBe(2));
+  expect('function(3).not.toBe(0)');
 });
