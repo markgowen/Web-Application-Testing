@@ -39,8 +39,9 @@ export const addFoul = currentStrikes => {
   } else return currentStrikes + 1;
 };
 
-export const hit = currentValue => {
-  return (currentValue = 0);
+export const hit = (setStrikes, setBalls) => {
+  setStrikes(0)
+  setBalls(0)
 };
 
 export default function Dashboard(props) {
@@ -72,7 +73,7 @@ export default function Dashboard(props) {
       <Button 
         variant="outlined" 
         className={classes.button}
-        onClick={hit(props.strikes, props.balls)}
+        onClick={() => hit(props.setStrikes, props.setBalls)}
 
       >
         Hit

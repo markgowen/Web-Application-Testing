@@ -59,6 +59,8 @@ export default function Display() {
   const [strikes, setStrikes] = useState(0);
   const [balls, setBalls] = useState(0);
 
+ 
+
   return (
     <div>
       <Paper className={classes.root}>
